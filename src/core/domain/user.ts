@@ -1,8 +1,8 @@
 export default class User {
 
-    constructor(private readonly id: string,
-        private readonly email: string,
-        private readonly passowrd: string) {
+    constructor(public readonly id: string,
+        public readonly email: string,
+        public readonly passowrd: string) {
 
     }
 

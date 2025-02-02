@@ -3,7 +3,7 @@ import { UserRepository } from "../../../core/ports/user.repository";
 
 import RedisService from "../../service/redis.service";
 
-export default class UserRedisRepository implements UserRepository {
+export default class UserRepositoryRedis implements UserRepository {
 
     constructor(private readonly redisService: RedisService) {
         this.redisService.connect()

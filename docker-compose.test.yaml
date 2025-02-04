@@ -1,0 +1,13 @@
+services:
+  redis-db:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-test:/root/redis
+      - ./redis-test/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD_TEST}
+      - REDIS_PORT=${REDIS_PORT_TEST}
+      - REDIS_DATABASE=${REDIS_DATABASE_TEST}

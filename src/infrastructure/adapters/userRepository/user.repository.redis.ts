@@ -11,9 +11,9 @@ export default class UserRepositoryRedis implements UserRepository {
 
     async findByEmail(email: string): Promise<User | null> {
         const user = await this.redisService.client.hGetAll(`user:${email}`);
-        if (!user)
+        if (Object.keys(user).length === 0 || !user) {
             return null
-
+        }
         return new User(user.id, user.email, user.password)
     }
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import AuthController from '../../../controllers/authController';
+import AuthController from '../../../controllers/auth.controller';
 import RegisterUser from '../../../../application/useCases/register.user';
 import UuidGenerator from '../../../adapters/idGenerator/uuidGenerator';
 import BcrytpHasher from '../../../adapters/hasher/bcrypt.hasher';

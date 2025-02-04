@@ -10,10 +10,13 @@ export default class Server {
     }
 
     async run() {
+        this.server.use(Express.urlencoded())
+        this.server.use(Express.json())
+
+        this.server.use(this.apiRouter)
         this.server.listen(envs.PORT, () => {
             console.log(`Server running on port : ${envs.PORT}`)
         })
-        this.server.use(this.apiRouter)
     }
 
 }

@@ -6,12 +6,12 @@ export default class AuthController {
     constructor(private readonly registerUser: RegisterUser) { }
 
     async register(request: Request, response: Response) {
-        const { email, passoword } = request.body;
+        const { email, password } = request.body;
         try {
-            await this.registerUser.execute(email, passoword);
+            await this.registerUser.execute(email, password);
             response.status(201).json({ message: 'User registered successfully' })
-        } catch (error) {
-            response.status(400).json({ error: error });
+        } catch (error: unknown) {
+            response.status(422).json({ error: (<Error>error).message });
         }
     }
 

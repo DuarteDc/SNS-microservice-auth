@@ -1,6 +1,7 @@
 {
   "name": "nsn-node",
   "version": "1.0.0",
+  "type": "module",
   "description": "This is server to send push notifications with aws ",
   "main": "index.js",
   "scripts": {

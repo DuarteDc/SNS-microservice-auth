@@ -7,7 +7,7 @@ export default class RegisterUser {
 
     constructor(private readonly userRepository: UserRepository, private readonly hasher: Hasher, private readonly idGenerator: IdGenerator) { }
 
-    async execute(email: string, password: string) {
+    async execute(email: string, password: string): Promise<boolean> {
         const existUser = await this.userRepository.findByEmail(email);
 
         if (existUser)
@@ -18,7 +18,7 @@ export default class RegisterUser {
         const id = this.idGenerator.generate()
 
         const newUser = new User(id, email, hashedPassowrd)
-        await this.userRepository.save(newUser)
+        return await this.userRepository.save(newUser)
     }
 
 }

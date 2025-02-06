@@ -46,7 +46,6 @@ describe('Register user UseCase', () => {
     })
 
     test('should fails to register user if user already exists', async () => {
-
         userRepository.findByEmail.mockResolvedValue(new User('123', 'duarte@gmail.com', 'hashedpassword'))
         await expect(registerUser.execute('duarte@gmail.com', 'password'))
             .rejects.toThrow('User already exists')
@@ -55,7 +54,17 @@ describe('Register user UseCase', () => {
         expect(hasher.hash).not.toHaveBeenCalled()
         expect(uuidGenerator.generate).not.toHaveBeenCalled()
         expect(userRepository.save).not.toHaveBeenCalled()
+    })
 
+
+    test('should returns false if an error occurs', async () => {
+        userRepository.findByEmail.mockResolvedValue(null)
+        hasher.hash.mockResolvedValue('hashedpassword')
+        uuidGenerator.generate.mockReturnValue('uuid-123456789')
+        userRepository.save.mockResolvedValue(false)
+
+        const result = await registerUser.execute('duarte@gmail.com', 'password')
+        expect(result).toBe(false)
     })
 
 })  

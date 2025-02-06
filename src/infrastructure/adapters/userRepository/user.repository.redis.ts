@@ -17,8 +17,13 @@ export default class UserRepositoryRedis implements UserRepository {
         return new User(user.id, user.email, user.password)
     }
 
-    async save(user: User): Promise<void> {
-        this.redisService.client.hSet(`user:${user.email}`, { ...user })
+    async save(user: User): Promise<boolean> {
+        try {
+            await this.redisService.client.hSet(`user:${user.email}`, { ...user })
+            return true;
+        } catch (error) {
+            return false
+        }
     }
 
 }

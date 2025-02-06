@@ -10,10 +10,29 @@ describe('User Repository - Redis Integration', () => {
         userRepository = new UserRepositoryRedis(redisService)
     })
 
-    test('should create a new user inside database', async () => {
+    afterAll(async () => {
+        await redisService.client.del(`user:duarte@test.com`)
+        await redisService.client.del(`user:duarte@test.save.com`)
+    })
 
+    test('should return null if user dont exist', async () => {
+        const user = await userRepository.findByEmail(`random.email${new Date().getTime()}@gmail.com`)
+        expect(user).toBe(null)
+    });
+
+    test('should create a new user and returns true', async () => {
         const user = new User('1234', 'duarte@test.com', 'password');
+        const newUser = await userRepository.save(user)
+        expect(newUser).toBeTruthy()
+    })
 
+    test('should return user saved in redis', async () => {
+        const user = new User('1234', 'duarte@test.save.com', 'password');
+        await userRepository.save(user)
+        const existUser = await userRepository.findByEmail(user.email)
+        expect(existUser).not.toBe(null)
+        expect(existUser?.id).toBe(user.id)
+        expect(existUser?.email).toBe(user.email)
     })
 
 })

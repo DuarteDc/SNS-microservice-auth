@@ -1,0 +1,10 @@
+/node_modules
+/redis
+/coverage
+/redis*
+.env.example
+.env.test
+.gitignore
+.dockerignore
+jest.config.test
+

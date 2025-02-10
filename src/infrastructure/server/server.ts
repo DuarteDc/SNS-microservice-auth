@@ -1,5 +1,5 @@
-import { envs } from "../config/config";
 import Express, { Router } from "express";
+import { envs } from "../config/config";
 
 
 export default class Server {

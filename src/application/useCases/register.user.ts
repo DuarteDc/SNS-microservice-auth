@@ -18,6 +18,7 @@ export default class RegisterUser {
         const id = this.idGenerator.generate()
 
         const newUser = new User(id, email, hashedPassowrd)
+        console.log(newUser)
         return await this.userRepository.save(newUser)
     }
 

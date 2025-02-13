@@ -8,7 +8,7 @@ describe('test user entity', () => {
         expect(user).toBeInstanceOf(User);
         expect(user.id).toEqual(expect.any(String))
         expect(user.email).toEqual(expect.any(String))
-        expect(user.passowrd).toEqual(expect.any(String))
+        expect(user.password).toEqual(expect.any(String))
     })
 
 })

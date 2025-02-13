@@ -16,7 +16,7 @@ export default class AuthController {
                 ...user,
                 token
             }
-            response.json({ user: userSession })
+            response.status(200).json({ user: userSession })
         } catch (error) {
             response.status(400).json({ error: (<Error>error).message });
         }

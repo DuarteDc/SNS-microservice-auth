@@ -8,7 +8,7 @@ COPY . .
 #RUN TEST 
 FROM base AS test
 RUN npm i
-RUN npm run test:watch
+RUN npm run test
 
 FROM base as builder
 WORKDIR /app

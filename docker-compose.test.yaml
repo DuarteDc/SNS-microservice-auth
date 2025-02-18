@@ -2,6 +2,7 @@ services:
   redis-db:
     image: redis:latest
     restart: always
+    env_file: .env.test
     ports:
       - 6379:6379
     volumes:

@@ -72,7 +72,7 @@ describe('Auth Controller', () => {
         mockAuthService.createSession = jest.fn().mockReturnValue(token)
 
         await authController.login(request as Request, response as Response)
-        await expect(mockLoginUser.execute).toHaveBeenCalledWith('test@example.com', 'password')
+        await expect(mockLoginUser.execute).toHaveBeenCalledWith(user.email, user.password)
 
         expect(mockAuthService.createSession).toHaveBeenCalledWith(user)
         expect(mockAuthService.createSession).toHaveReturnedWith(token)

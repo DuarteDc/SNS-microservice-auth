@@ -13,6 +13,8 @@ services:
       - REDIS_DATABASE=${REDIS_DATABASE}
   app:
     container_name: NSN_app
+    env_file:
+      - .env
     build:
       context: .
       dockerfile: Dockerfile

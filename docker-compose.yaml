@@ -1,4 +1,12 @@
 services:
+  api-gateway:
+    image: nginx:latest
+    volumes:
+      - ./.nginx/api_gateway.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - app
   redis-db:
     image: redis:latest
     restart: always

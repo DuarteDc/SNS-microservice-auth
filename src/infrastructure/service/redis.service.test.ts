@@ -8,13 +8,12 @@ describe('Redis Service', () => {
     let mockClient: Partial<RedisClientType>;
 
     beforeEach(() => {
-        // Creamos un mock para el cliente de Redis
+
         mockClient = {
             on: jest.fn(),
             connect: jest.fn().mockResolvedValue(undefined),
         };
 
-        // Asignamos el mock a `createClient`
         (createClient as jest.Mock).mockReturnValue(mockClient);
     });
 

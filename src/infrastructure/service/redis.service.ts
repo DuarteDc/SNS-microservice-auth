@@ -1,16 +1,17 @@
 import { createClient, type RedisClientType } from 'redis';
 import { envs } from '../config/config';
 
-
-
 export default class RedisService {
 
     public client: RedisClientType;
 
     constructor() {
         this.client = createClient({
-            host: envs.REDIS_HOST,
-            port: envs.REDIS_PORT
+            socket: {
+                host: envs.REDIS_HOST,
+                port: envs.REDIS_PORT,
+            },
+            password: envs.REDIS_PASSWORD
         });
     }
 

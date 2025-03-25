@@ -44,7 +44,7 @@ jobs:
 
       - name: Set enviroment
         run: |
-          touch .env
+          touch .env.test
           echo '${{secrets.ENVIROMENT}}' >> .env
 
       - name: Set up QEMU

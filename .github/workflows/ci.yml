@@ -64,6 +64,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ steps.version.outputs.version }}
-            latest
+            duartebv17/sns-auth:${{ steps.version.outputs.version }}
+            duartebv17/sns-auth:latest
           labels: sns-auth

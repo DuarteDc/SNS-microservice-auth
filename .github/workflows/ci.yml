@@ -28,6 +28,7 @@ jobs:
       - run: npm test
 
   publish:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

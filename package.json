@@ -17,7 +17,9 @@
     "aws",
     "NSN",
     "notifications",
-    "push"
+    "push",
+    "api gateway",
+    "docker"
   ],
   "author": "DurteBv",
   "license": "ISC",

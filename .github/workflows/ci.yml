@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm i
+      - run: npm ci
       - run: npm test
 
   publish:
@@ -33,6 +33,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get tag version
         uses: PaulHatch/semantic-version@v4.0.3
@@ -58,10 +60,12 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build and push App
         uses: docker/build-push-action@v6
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.version }}
         with:
           context: .
           push: true
           no-cache: true
           tags: |
-            duartebv17/sns-auth:${{ steps.version.outputs.version }}
+            duartebv17/sns-auth:$NEW_VERSION
             duartebv17/sns-auth:latest

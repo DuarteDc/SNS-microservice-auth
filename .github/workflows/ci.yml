@@ -60,12 +60,10 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build and push App
         uses: docker/build-push-action@v6
-        env:
-          NEW_VERSION: ${{ steps.version.outputs.version }}
         with:
           context: .
           push: true
-          no-cache: true
           tags: |
-            duartebv17/sns-auth:$NEW_VERSION
-            duartebv17/sns-auth:latest
+            ${{ steps.version.outputs.version }}
+            latest
+          labels: sns-auth

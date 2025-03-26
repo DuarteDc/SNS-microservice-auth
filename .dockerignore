@@ -8,3 +8,10 @@
 .dockerignore
 jest.config.test
 
+.nginx
+.github
+.env.test
+.env.example
+
+docker-compose.test.yaml
+setupTest.test

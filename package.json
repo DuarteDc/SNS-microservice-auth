@@ -7,7 +7,7 @@
     "dev": "tsnd --respawn src/app.ts",
     "build": "rimraf ./dist && tsc",
     "start": "node dist/app.js",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "test:watch": "npm run docker:test && jest --watch",
     "test:coverage": "npm run docker:test && jest --coverage",
     "docker:test": "docker compose -f docker-compose.test.yaml --env-file .env.test up -d"

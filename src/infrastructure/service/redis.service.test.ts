@@ -34,9 +34,9 @@ describe('Redis Service', () => {
         await redisService.connect()
 
         // expect(mockClient).toHaveBeenCalledWith('error', expect.any(Function))
-        expect(mockClient).toHaveBeenCalledWith('connect', expect.any(Function))
-        expect(mockClient).toHaveBeenCalledWith('reconnecting', expect.any(Function))
-        expect(mockClient).toHaveBeenCalledWith('ready', expect.any(Function))
+        expect(mockClient.on).toHaveBeenCalledWith('connect', expect.any(Function))
+        expect(mockClient.on).toHaveBeenCalledWith('reconnecting', expect.any(Function))
+        expect(mockClient.on).toHaveBeenCalledWith('ready', expect.any(Function))
 
         expect(mockClient.connect).toHaveBeenCalledTimes(1)
 

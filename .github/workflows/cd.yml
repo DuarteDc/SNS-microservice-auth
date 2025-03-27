@@ -15,7 +15,7 @@ jobs:
       - name: Connect to EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secret.EC2_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           SOURCE: "./"
           REMOTE_HOST: ${{ secrets.AWS_HOST }}
           REMOTE_USER: ${{ secrets.AWS_USER }}

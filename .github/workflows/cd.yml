@@ -1,0 +1,26 @@
+name: "CD microservice"
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+jobs:
+  deploy:
+    name: "Deploy sns app"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect to EC2 instance
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secret.EC2_SSH_KEY }}
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.AWS_HOST }}
+          REMOTE_USER: ${{ secrets.AWS_USER }}
+
+      - name: "Docker pull image"
+        run: |
+          docker rm -f sns-auth
+          docker run -dp 3000:3000 --name sns-auth duartebv17/sns-auth:latest
